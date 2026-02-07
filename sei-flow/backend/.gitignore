@@ -1,0 +1,15 @@
+# Dependências
+node_modules/
+npm-debug.log*
+
+# Ambiente
+.env
+.env.local
+
+# Build
+dist/
+build/
+
+# IDE
+.vscode/
+.idea/

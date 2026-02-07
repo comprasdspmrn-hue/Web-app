@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  # Backend
+  backend:
+    build: ./backend
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+    volumes:
+      - ./backend:/app
+      - /app/node_modules
+    command: npm run dev
+  
+  # Frontend
+  frontend:
+    build: ./frontend
+    ports:
+      - "5173:5173"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    depends_on:
+      - backend
+    command: npm run dev
+  
+  # Banco de dados (opcional - para o futuro)
+  # db:
+  #   image: postgres:15
+  #   environment:
+  #     POSTGRES_DB: minhaapp
+  #     POSTGRES_USER: admin
+  #     POSTGRES_PASSWORD: secret
+  #   ports:
+  #     - "5432:5432"
+  #   volumes:
+  #     - postgres_data:/var/lib/postgresql/data
+
+# volumes:
+#   postgres_data:
